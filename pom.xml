@@ -36,6 +36,18 @@
                 <suite.xml.file>DivAndMult.xml</suite.xml.file>
             </properties>
         </profile>
+        <profile>
+            <id>IndexPageAndFrame</id>
+            <properties>
+                <suite.xml.file>hw2ex1.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>IndexAndDifferentElementsPagesTests</id>
+            <properties>
+                <suite.xml.file>hw2ex2.xml</suite.xml.file>
+            </properties>
+        </profile>
     </profiles>
 
     <dependencies>
