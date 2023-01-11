@@ -12,6 +12,11 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <assertj-core>3.23.1</assertj-core>
+        <maven-compiler-plugin>3.8.1</maven-compiler-plugin>
+        <maven-surefire-plugin>3.0.0-M5</maven-surefire-plugin>
+        <aspectj.version>1.9.5</aspectj.version>
+        <slf4j.version>2.0.5</slf4j.version>
     </properties>
 
     <profiles>
@@ -36,6 +41,33 @@
                 <suite.xml.file>DivAndMult.xml</suite.xml.file>
             </properties>
         </profile>
+        <profile>
+            <id>AllureEx1</id>
+            <properties>
+                <suite.xml.file>allureEx1.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>AllureEx2</id>
+            <properties>
+                <suite.xml.file>allureEx2.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>AllureFail</id>
+            <properties>
+                <suite.xml.file>failedTest.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>AllureAllCases</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml.file>AllEx4.xml</suite.xml.file>
+            </properties>
+        </profile>
     </profiles>
 
     <dependencies>
@@ -56,11 +88,31 @@
             <version>3.23.1</version>
         </dependency>
         <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>2.20.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+        </dependency>
+        <dependency>
             <groupId>com.epam.calculator</groupId>
             <artifactId>calc</artifactId>
             <version>1.0</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/calculator-1.0.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.3.1</version>
         </dependency>
     </dependencies>
 
@@ -83,7 +135,15 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>${project.basedir}/src/test/resources/${suite.xml.file}</suiteXmlFile>  <!-- запуск опр сьюта-->
                     </suiteXmlFiles>
+                    <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -107,6 +167,11 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.12.0</version>
             </plugin>
         </plugins>
     </build>
