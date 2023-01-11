@@ -31,6 +31,18 @@
             </properties>
         </profile>
         <profile>
+            <id>Exercise3_1</id>
+            <properties>
+                <suite.xml.file>hw3ex1.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>Exercise3_2</id>
+            <properties>
+                <suite.xml.file>hw3ex2.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
             <id>DivAndMult</id>
             <properties>
                 <suite.xml.file>DivAndMult.xml</suite.xml.file>
@@ -54,6 +66,11 @@
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>3.23.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>2.0.5</version>
         </dependency>
         <dependency>
             <groupId>com.epam.calculator</groupId>
