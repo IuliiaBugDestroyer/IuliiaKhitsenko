@@ -1,35 +1,20 @@
 package com.epam.tc.hw2.ex1;
 
+import com.epam.tc.hw2.ExerciseBase;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class ExerciseOne {
-
-    private WebDriver driver;
-
-    @BeforeClass
-    void setupTest() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-    }
-
-    @AfterClass
-    void teardown() {
-        driver.quit(); //12. Close Browser
-    }
+public class ExerciseOne extends ExerciseBase {
 
     @Test
     public void test() {
         SoftAssert softAssert = new SoftAssert();
 
-        driver.get("https://jdi-testing.github.io/jdi-light/index.html"); //1. Open test site by URL
+        driver.get(url); //1. Open test site by URL
         String getActualTitle = driver.getTitle();
 
         softAssert.assertEquals(getActualTitle, "Home Page"); //2. Assert Browser title
@@ -55,8 +40,10 @@ public class ExerciseOne {
         //5. Assert that there are 4 items on the header section are displayed, and they have proper texts
         List<WebElement> tabs = driver
                 .findElements(By.cssSelector(".m-l8 > li"));
-        softAssert.assertEquals(tabs.stream().map(x -> x.getText()).toArray(),
-                new String[] {"HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS"});
+
+        var tabsText = selectWebElementsText(tabs).collect(Collectors.toList());
+        var expectedTabsText = List.of("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
+        softAssert.assertEquals(tabsText, expectedTabsText);
 
         //6. Assert that there are 4 images on the Index Page, and they are displayed
         List<WebElement> pict = driver
@@ -65,28 +52,31 @@ public class ExerciseOne {
         softAssert.assertEquals(count, 4);
 
         //7. Assert that there are 4 texts on the Index Page under icons, and they have proper text
-        List<WebElement> pictText = driver
+        List<WebElement> iconsTextsElements = driver
                 .findElements(By.className("benefit-txt"));
-        softAssert.assertEquals(pictText.stream().filter(x -> x.getText() != null).count(), 4);
+        softAssert.assertEquals(iconsTextsElements.size(), 4);
 
-        WebElement frame = driver
-                .findElement(By.id("frame")); //8. Assert that there is the iframe with “Frame Button” exist
+        //8. Assert that there is the iframe with “Frame Button” exist
+        WebElement frame = driver.findElement(By.id("frame"));
         softAssert.assertNotNull(frame);
 
-        driver.switchTo().frame(frame); // 9. Switch to the iframe and check that there is “Frame Button” in the iframe
-        WebElement frameBtn = driver.findElement(By.id("frame-button"));
-        softAssert.assertNotNull(frameBtn);
+        // 9. Switch to the iframe and check that there is “Frame Button” in the iframe
+        driver.switchTo().frame(frame);
+        WebElement frameButton = driver.findElement(By.id("frame-button"));
+        softAssert.assertNotNull(frameButton);
 
-        driver.switchTo().parentFrame(); //10. Switch to original window back
+        //10. Switch to original window back
+        driver.switchTo().parentFrame();
 
-        //Assert that there are 5 items in theLeft Sectionare displayed, and they have proper text
-        List<WebElement> leftSect = driver
-                .findElements(By.xpath("//*[@id=\"mCSB_1_container\"]/ul/li"));
-        softAssert.assertEquals(leftSect.stream().map(x -> x.getText())
-                .toArray(), new String[] {"Home", "Contact form", "Service", "Metals & Colors", "Elements packs"});
+        //Assert that there are 5 items in theLeft Section are displayed, and they have proper text
+        List<WebElement> leftSectionElements = driver.findElements(By.cssSelector(".sidebar-menu > li"));
+
+        var leftSectionElementsTexts = selectWebElementsText(leftSectionElements).collect(Collectors.toList());
+        var expectedElements = List.of("Home", "Contact form", "Service", "Metals & Colors", "Elements packs");
+
+        softAssert.assertEquals(leftSectionElementsTexts, expectedElements);
 
         softAssert.assertAll();
     }
-
 }
 

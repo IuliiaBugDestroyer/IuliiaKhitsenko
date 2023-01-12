@@ -2,33 +2,18 @@ package com.epam.tc.hw2.ex2;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.epam.tc.hw2.ExerciseBase;
 import java.util.List;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class ExerciseTwo {
-    private WebDriver driver;
-
-    @BeforeClass
-    void setupTest() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-    }
-
-    @AfterClass
-    void teardown() {
-        driver.quit(); //10. Close Browser
-    }
+public class ExerciseTwo extends ExerciseBase {
 
     @Test
     public void test() {
 
-        driver.get("https://jdi-testing.github.io/jdi-light/index.html"); //1. Open test site by URL
+        driver.get(url); //1. Open test site by URL
 
         String getActualTitle = driver.getTitle();
         assertThat(getActualTitle).isEqualTo("Home Page"); //2. Assert Browser title
@@ -53,18 +38,17 @@ public class ExerciseTwo {
         assertThat(username.getText()).isEqualTo("ROMAN IOVLEV");
 
         //5. Open through the header menu Service -> Different Elements Page
-        WebElement arrow = driver.findElement(By.className("fa-caret-down"));
-        arrow.click();
-        WebElement diff = driver
-                .findElement(By.xpath(
-                        "//div[@id='mCSB_1']/div[@id='mCSB_1_container']/ul/li[@index='3']/ul/li[@index='8']/a"));
-        diff.click();
+        driver.findElement(By.className("fa-caret-down")).click();
 
-        List<WebElement> check = driver.findElements(By.className("label-checkbox"));  //6. Select checkboxes
+        driver.findElement(By.linkText("Different elements")).click();
+
+        //6. Select checkboxes
+        List<WebElement> check = driver.findElements(By.className("label-checkbox"));
         check.stream()
                 .filter(x -> x.getText().equalsIgnoreCase("Water") | x.getText().equalsIgnoreCase("Wind"))
                 .map(x -> x.findElement(By.tagName("input")))
                 .forEach(x -> x.click());
+
         //9. Assert that for each checkbox there is an individual log row
         // and value is corresponded to the status of checkbox
         List<WebElement> logsChbx = driver.findElement(By.className("panel-body-list")).findElements(By.tagName("li"));
@@ -82,7 +66,8 @@ public class ExerciseTwo {
         List<WebElement> logsRadio = driver.findElement(By.className("panel-body-list")).findElements(By.tagName("li"));
         assertThat(logsRadio.stream().filter(x -> x.getText().contains("metal: value changed to Selen"))).isNotEmpty();
 
-        WebElement drop = driver.findElement(By.tagName("select")); //8. Select in dropdown Yellow
+        //8. Select in dropdown Yellow
+        WebElement drop = driver.findElement(By.tagName("select"));
         drop.click();
         List<WebElement> colors = drop.findElements(By.tagName("option"));
         colors.stream().filter(x -> x.getText().equalsIgnoreCase("Yellow"))
@@ -93,5 +78,4 @@ public class ExerciseTwo {
                 .contains("Colors: value changed to Yellow"))).isNotEmpty();
 
     }
-
 }
