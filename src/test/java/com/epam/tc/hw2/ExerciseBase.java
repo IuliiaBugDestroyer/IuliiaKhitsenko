@@ -1,5 +1,6 @@
 package com.epam.tc.hw2;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.Collection;
 import java.util.stream.Stream;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,8 @@ public abstract class ExerciseBase {
 
     @BeforeClass
     public void setupTest() {
+        WebDriverManager.chromedriver().setup();
+
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
