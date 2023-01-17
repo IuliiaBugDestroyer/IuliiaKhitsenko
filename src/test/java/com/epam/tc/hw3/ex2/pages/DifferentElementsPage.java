@@ -1,18 +1,17 @@
 package com.epam.tc.hw3.ex2.pages;
 
-import com.epam.tc.hw3.ex2.driver.Waits;
+import com.epam.tc.hw3.pages.PageBase;
 import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class DifferentElementsPage {
-    Waits waits;
+public class DifferentElementsPage extends PageBase {
 
     public DifferentElementsPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        waits = new Waits(driver);
+        super(driver, "");
+        init();
     }
 
     public List<WebElement> getCheckboxes() {
@@ -34,19 +33,20 @@ public class DifferentElementsPage {
     @FindBy(className = "label-checkbox")
     private List<WebElement> checkboxes;
 
-    @FindBy(xpath = "//*[@id=\"mCSB_2_container\"]/section[1]/div[2]/div/ul")
+    @FindBy(css = ".logs li")
     private List<WebElement> logs;
 
     @FindBy(className = "label-radio")
     private List<WebElement> radio;
 
     @FindBy(tagName = "select")
-    private WebElement drop;
+    private WebElement dropdown;
 
     @FindBy(tagName = "option")
     private List<WebElement> color;
 
     public void openColorDrop() {
-        drop.click();
+        dropdown.click();
+        waits.waitUntilCondition(ExpectedConditions.visibilityOfAllElements(color));
     }
 }

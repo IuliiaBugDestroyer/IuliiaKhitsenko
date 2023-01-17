@@ -1,20 +1,16 @@
 package com.epam.tc.hw3.ex1.pages;
 
-import com.epam.tc.hw3.ex1.driver.Waits;
+import com.epam.tc.hw3.pages.PageBase;
 import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class IndexPage {
-
-    WebDriver driver;
-    Waits waits;
+public class IndexPage extends PageBase {
 
     public IndexPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        waits = new Waits(driver);
+        super(driver, "https://jdi-testing.github.io/jdi-light/index.html");
+        frame = new Frame(driver);
     }
 
     @FindBy(id = "user-icon")
@@ -27,22 +23,24 @@ public class IndexPage {
     private WebElement password;
 
     @FindBy(className = "fa-sign-in")
-    private WebElement loginBtn;
+    private WebElement loginButton;
 
-    @FindBy(id  = "user-name")
+    @FindBy(id = "user-name")
     private WebElement username;
 
     @FindBy(css = ".m-l8 > li")
     private List<WebElement> tabs;
 
     @FindBy(className = "icons-benefit")
-    private List<WebElement> pict;
+    private List<WebElement> pictures;
 
     @FindBy(className = "benefit-txt")
     private List<WebElement> pictText;
 
-    @FindBy(xpath = "//*[@id=\"mCSB_1_container\"]/ul/li")
-    private List<WebElement> leftSect;
+    @FindBy(css = ".sidebar-menu > li")
+    private List<WebElement> leftSection;
+
+    private Frame frame;
 
     public WebElement getUsername() {
         return username;
@@ -53,7 +51,7 @@ public class IndexPage {
     }
 
     public List<WebElement> getPict() {
-        return pict;
+        return pictures;
     }
 
     public List<WebElement> getPictText() {
@@ -61,13 +59,21 @@ public class IndexPage {
     }
 
     public List<WebElement> getLeftSect() {
-        return leftSect;
+        return leftSection;
+    }
+
+    public Frame getFrame() {
+        return frame;
     }
 
     public void login(String name, String password) {
         loginForm.click();
         this.name.sendKeys(name);
         this.password.sendKeys(password);
-        loginBtn.click();
+        loginButton.click();
+    }
+
+    public void switchTo(WebElement element) {
+        driver.switchTo().frame(element);
     }
 }
