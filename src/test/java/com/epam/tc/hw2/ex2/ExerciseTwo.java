@@ -52,30 +52,27 @@ public class ExerciseTwo extends ExerciseBase {
         //9. Assert that for each checkbox there is an individual log row
         // and value is corresponded to the status of checkbox
         List<WebElement> logsChbx = driver.findElement(By.className("panel-body-list")).findElements(By.tagName("li"));
-        assertThat(logsChbx.stream()
-                .filter(x -> x.getText().contains("Water: condition changed to true")
-                        | x.getText().contains("Wind: condition changed to true")))
-                .isNotEmpty();
+        assertThat(filterElementsByText(logsChbx,"Water: condition changed to true")).isNotEmpty();
+        assertThat(filterElementsByText(logsChbx, "Wind: condition changed to true")).isNotEmpty();
 
         List<WebElement> radio = driver.findElements(By.className("label-radio")); //7. Select radio Selen
-        radio.stream()
-                .filter(x -> x.getText().equalsIgnoreCase("Selen"))
+        filterElementsByText(radio,"Selen")
                 .map(x -> x.findElement(By.tagName("input")))
                 .findFirst().get().click();
         //9. Assert that for radio button there is a log row and value is corresponded to the status of radio button
         List<WebElement> logsRadio = driver.findElement(By.className("panel-body-list")).findElements(By.tagName("li"));
-        assertThat(logsRadio.stream().filter(x -> x.getText().contains("metal: value changed to Selen"))).isNotEmpty();
+        assertThat(filterElementsByText(logsRadio,"metal: value changed to Selen")).isNotEmpty();
 
         //8. Select in dropdown Yellow
         WebElement drop = driver.findElement(By.tagName("select"));
         drop.click();
         List<WebElement> colors = drop.findElements(By.tagName("option"));
-        colors.stream().filter(x -> x.getText().equalsIgnoreCase("Yellow"))
+        filterElementsByText(colors,"Yellow")
                 .findFirst().get().click();
+
         //9. Assert that for dropdown there is a log row and value is corresponded to the selected value.
         List<WebElement> logsDrop = driver.findElement(By.className("panel-body-list")).findElements(By.tagName("li"));
-        assertThat(logsDrop.stream().filter(x -> x.getText()
-                .contains("Colors: value changed to Yellow"))).isNotEmpty();
+        assertThat(filterElementsByText(logsDrop,"Colors: value changed to Yellow")).isNotEmpty();
 
     }
 }
