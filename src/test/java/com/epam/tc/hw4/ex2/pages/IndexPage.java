@@ -1,6 +1,6 @@
 package com.epam.tc.hw4.ex2.pages;
 
-import com.epam.tc.hw4.ex2.driver.Wait;
+import com.epam.tc.hw4.driver.Wait;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,7 +29,7 @@ public class IndexPage {
     private WebElement password;
 
     @FindBy(className = "fa-sign-in")
-    private WebElement loginBtn;
+    private WebElement loginButton;
 
     @FindBy(id  = "user-name")
     private WebElement username;
@@ -37,7 +37,7 @@ public class IndexPage {
     @FindBy(className = "fa-caret-down")
     private WebElement arrow;
 
-    @FindBy(xpath = "//div[@id='mCSB_1']/div[@id='mCSB_1_container']/ul/li[@index='3']/ul/li[@index='8']/a")
+    @FindBy(linkText = "Different elements")
     private WebElement diffPage;
 
     public WebElement getUsername() {
@@ -52,10 +52,10 @@ public class IndexPage {
         loginForm.click();
         this.name.sendKeys(name);
         this.password.sendKeys(password);
-        loginBtn.click();
+        loginButton.click();
     }
 
-    public void redirect() {
+    public void redirectToDifferentElementsPage() {
         arrow.click();
         diffPage.click();
     }

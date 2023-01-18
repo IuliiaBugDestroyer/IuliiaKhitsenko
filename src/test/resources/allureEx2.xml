@@ -2,7 +2,7 @@
 
 <suite name="AllureEx2Suite" verbose="1" >
     <listeners>
-        <listener class-name="com.epam.tc.hw4.ex2.listeners.ScreenshotListener"></listener>
+        <listener class-name="com.epam.tc.hw4.listeners.ScreenshotListener"></listener>
     </listeners>
     <test name="AllureEx2" >
         <classes>

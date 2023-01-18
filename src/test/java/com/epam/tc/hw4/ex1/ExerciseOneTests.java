@@ -1,10 +1,8 @@
 package com.epam.tc.hw4.ex1;
 
-import com.epam.tc.hw4.ex1.driver.DriverManager;
-import com.epam.tc.hw4.ex1.driver.Wait;
+import com.epam.tc.hw4.driver.DriverManager;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -12,17 +10,14 @@ import org.testng.annotations.Test;
 
 public class ExerciseOneTests {
 
-    WebDriver driver;
-    Wait wait;
     Steps steps;
 
     @BeforeMethod
     @Feature("Main page")
     @Story("Login")
     public void setUp(ITestContext context) {
-        this.driver = DriverManager.setupDriver();
+        var driver = DriverManager.setupDriver();
         this.steps = new Steps(driver);
-        wait = new Wait(this.driver);
         context.setAttribute("driver", driver);
     }
 
@@ -74,7 +69,7 @@ public class ExerciseOneTests {
     @Story("Frame content")
     public void verifyFrameBtn() {
         steps.switchToFrame(); // 9. Switch to the iframe and check that there is “Frame Button”
-        steps.verifyFrameBtn();
+        steps.verifyFrameButton();
     }
 
     @Test(description = "Switch to main page")
@@ -88,7 +83,7 @@ public class ExerciseOneTests {
     @Feature("Main page")
     @Story("Page content")
     public void verifyLeftSection() {
-        steps.verifyLeftSect(); //11. Assert that there are 5 items in the Left Section are displayed
+        steps.verifyLeftSection(); //11. Assert that there are 5 items in the Left Section are displayed
     }
 
     @AfterMethod

@@ -1,4 +1,4 @@
-package com.epam.tc.hw4.ex1.listeners;
+package com.epam.tc.hw4.listeners;
 
 import com.epam.tc.hw4.AttachmentUtils;
 import org.openqa.selenium.OutputType;

@@ -1,8 +1,8 @@
 package com.epam.tc.hw4;
 
 import com.epam.tc.hw4.ex2.Steps;
-import com.epam.tc.hw4.ex2.driver.DriverManager;
-import com.epam.tc.hw4.ex2.driver.Wait;
+import com.epam.tc.hw4.driver.DriverManager;
+import com.epam.tc.hw4.driver.Wait;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.openqa.selenium.WebDriver;

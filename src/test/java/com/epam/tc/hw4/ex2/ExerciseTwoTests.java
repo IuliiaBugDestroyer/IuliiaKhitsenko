@@ -1,7 +1,6 @@
 package com.epam.tc.hw4.ex2;
 
-import com.epam.tc.hw4.ex2.driver.DriverManager;
-import com.epam.tc.hw4.ex2.driver.Wait;
+import com.epam.tc.hw4.driver.DriverManager;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Stories;
 import io.qameta.allure.Story;
@@ -12,8 +11,6 @@ import org.testng.annotations.Test;
 
 public class ExerciseTwoTests {
 
-
-    Wait wait;
     Steps steps;
 
     @BeforeMethod
@@ -22,7 +19,6 @@ public class ExerciseTwoTests {
     public void setUp(ITestContext context) {
         var driver = DriverManager.setupDriver();
         this.steps = new Steps(driver);
-        wait = new Wait(driver);
         context.setAttribute("driver", driver);
     }
 
@@ -55,8 +51,8 @@ public class ExerciseTwoTests {
     @Stories(value = {@Story(value = "Elements"), @Story(value = "Logs")})
     public void selectRadioBtn() {
         steps.login("Roman", "Jdi1234");
-        steps.selectRadioBtn(); //7. Select radio Selen
-        steps.verifyRadioBtnLogs(); //9. Assert that for radio button there is a log row
+        steps.selectRadioButton(); //7. Select radio Selen
+        steps.verifyRadioButtonLogs(); //9. Assert that for radio button there is a log row
     }
 
     @Test(description = "Select dropdown, check logs")

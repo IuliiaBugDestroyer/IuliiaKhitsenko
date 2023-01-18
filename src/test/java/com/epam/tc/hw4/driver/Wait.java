@@ -1,4 +1,4 @@
-package com.epam.tc.hw4.ex1.driver;
+package com.epam.tc.hw4.driver;
 
 import java.time.Duration;
 import java.util.NoSuchElementException;

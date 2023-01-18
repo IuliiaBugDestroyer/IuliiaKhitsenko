@@ -1,6 +1,6 @@
 package com.epam.tc.hw4.ex2.pages;
 
-import com.epam.tc.hw4.ex2.driver.Wait;
+import com.epam.tc.hw4.driver.Wait;
 import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,7 +34,7 @@ public class DifferentElementsPage {
     @FindBy(className = "label-checkbox")
     private List<WebElement> checkboxes;
 
-    @FindBy(xpath = "//*[@id=\"mCSB_2_container\"]/section[1]/div[2]/div/ul")
+    @FindBy(css = ".logs li")
     private List<WebElement> logs;
 
     @FindBy(className = "label-radio")

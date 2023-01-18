@@ -1,4 +1,4 @@
-package com.epam.tc.hw4.ex1.driver;
+package com.epam.tc.hw4.driver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;

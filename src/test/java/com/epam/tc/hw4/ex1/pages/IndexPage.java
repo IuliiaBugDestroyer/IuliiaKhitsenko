@@ -1,6 +1,6 @@
 package com.epam.tc.hw4.ex1.pages;
 
-import com.epam.tc.hw4.ex1.driver.Wait;
+import com.epam.tc.hw4.driver.Wait;
 import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,22 +30,22 @@ public class IndexPage {
     private WebElement password;
 
     @FindBy(className = "fa-sign-in")
-    private WebElement loginBtn;
+    private WebElement loginButton;
 
     @FindBy(id  = "user-name")
     private WebElement username;
 
-    @FindBy(xpath = "/html/body/header/div/nav/ul[1]/li/a")
+    @FindBy(css = ".m-l8 > li")
     private List<WebElement> tabs;
 
     @FindBy(className = "icons-benefit")
-    private List<WebElement> pict;
+    private List<WebElement> pictures;
 
     @FindBy(className = "benefit-txt")
     private List<WebElement> pictText;
 
-    @FindBy(xpath = "//*[@id=\"mCSB_1_container\"]/ul/li")
-    private List<WebElement> leftSect;
+    @FindBy(css = ".sidebar-menu > li")
+    private List<WebElement> leftSection;
 
     public WebElement getUsername() {
         return username;
@@ -55,16 +55,16 @@ public class IndexPage {
         return tabs;
     }
 
-    public List<WebElement> getPict() {
-        return pict;
+    public List<WebElement> getPictures() {
+        return pictures;
     }
 
     public List<WebElement> getPictText() {
         return pictText;
     }
 
-    public List<WebElement> getLeftSect() {
-        return leftSect;
+    public List<WebElement> getLeftSection() {
+        return leftSection;
     }
 
     public void open() {
@@ -75,6 +75,6 @@ public class IndexPage {
         loginForm.click();
         this.name.sendKeys(name);
         this.password.sendKeys(password);
-        loginBtn.click();
+        loginButton.click();
     }
 }
