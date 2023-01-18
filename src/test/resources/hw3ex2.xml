@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Exercise3_2Suite" verbose="1" >
+    <test name="Exercise3_2" >
+        <classes>
+            <class name="com.epam.tc.hw3.ex2.ExerciseTwo" />
+        </classes>
+    </test>
+</suite>

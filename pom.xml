@@ -36,9 +36,33 @@
             </properties>
         </profile>
         <profile>
+            <id>Exercise3_1</id>
+            <properties>
+                <suite.xml.file>hw3ex1.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>Exercise3_2</id>
+            <properties>
+                <suite.xml.file>hw3ex2.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
             <id>DivAndMult</id>
             <properties>
                 <suite.xml.file>DivAndMult.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>IndexPageAndFrame</id>
+            <properties>
+                <suite.xml.file>hw2ex1.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>IndexAndDifferentElementsPagesTests</id>
+            <properties>
+                <suite.xml.file>hw2ex2.xml</suite.xml.file>
             </properties>
         </profile>
         <profile>
@@ -75,7 +99,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.6.0</version>
+            <version>4.7.2</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
@@ -86,6 +110,11 @@
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>3.23.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
@@ -103,11 +132,6 @@
             <version>1.0</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/calculator-1.0.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-nop</artifactId>
-            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
