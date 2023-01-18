@@ -48,6 +48,18 @@
                 <suite.xml.file>DivAndMult.xml</suite.xml.file>
             </properties>
         </profile>
+        <profile>
+            <id>IndexPageAndFrame</id>
+            <properties>
+                <suite.xml.file>hw2ex1.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>IndexAndDifferentElementsPagesTests</id>
+            <properties>
+                <suite.xml.file>hw2ex2.xml</suite.xml.file>
+            </properties>
+        </profile>
     </profiles>
 
     <dependencies>
@@ -55,7 +67,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.6.0</version>
+            <version>4.7.2</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
