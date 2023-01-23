@@ -11,12 +11,21 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <testng>7.6.1</testng>
+        <selenium-java>4.1.1</selenium-java>
+        <webdrivermanager>5.3.1</webdrivermanager>
+        <cucumber-java>7.8.1</cucumber-java>
+        <cucumber-java8>1.2.5</cucumber-java8>
+        <cucumber-core>7.8.1</cucumber-core>
+        <selenium-chrome-driver>4.6.0</selenium-chrome-driver>
+        <webdrivermanager>5.3.1</webdrivermanager>
         <assertj-core>3.23.1</assertj-core>
-        <maven-compiler-plugin>3.8.1</maven-compiler-plugin>
-        <maven-surefire-plugin>3.0.0-M5</maven-surefire-plugin>
+        <maven-compiler-plugin>3.10.1</maven-compiler-plugin>
+        <maven-surefire-plugin>3.0.0-M7</maven-surefire-plugin>
+        <calc>1.0</calc>
+        <allure-testng>2.20.1</allure-testng>
+        <allure-maven>2.12.0</allure-maven>
         <aspectj.version>1.9.5</aspectj.version>
-        <slf4j.version>2.0.5</slf4j.version>
     </properties>
 
     <profiles>
@@ -92,54 +101,99 @@
                 <suite.xml.file>AllEx4.xml</suite.xml.file>
             </properties>
         </profile>
+        <profile>
+            <id>CucumberTests</id>
+            <properties>
+                <suite.xml.file>cucumber.xml</suite.xml.file>
+            </properties>
+        </profile>
     </profiles>
 
     <dependencies>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure-testng}</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.7.2</version>
+            <version>${selenium-java}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdrivermanager}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber-java}</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>info.cukes</groupId>-->
+<!--            <artifactId>cucumber-java8</artifactId>-->
+<!--            <version>${cucumber-java8}</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-core</artifactId>
+            <version>${cucumber-core}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.3.0</version>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>${selenium-chrome-driver}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.23.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-nop</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-testng</artifactId>
-            <version>2.20.1</version>
+            <version>${assertj-core}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.24</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.epam.calculator</groupId>
-            <artifactId>calc</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/calculator-1.0.jar</systemPath>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>7.9.0</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>5.3.1</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.14.1</version>
         </dependency>
-    </dependencies>
+        <dependency>
+            <groupId>com.epam.jdi</groupId>
+            <artifactId>jdi-light-html</artifactId>
+            <version>1.4.4</version>
+        </dependency>
 
+                <dependency>
+                    <groupId>com.epam.calculator</groupId>
+                    <artifactId>calc</artifactId>
+                    <version>1.0</version>
+                    <scope>system</scope>
+                    <systemPath>${project.basedir}/calculator-1.0.jar</systemPath>
+                </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
