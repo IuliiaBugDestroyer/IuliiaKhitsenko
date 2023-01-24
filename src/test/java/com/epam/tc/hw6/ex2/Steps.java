@@ -1,13 +1,12 @@
-package com.epam.tc.hw4.ex2;
+package com.epam.tc.hw6.ex2;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.epam.tc.hw4.StepsBase;
-import com.epam.tc.hw4.ex2.pages.DifferentElementsPage;
-import com.epam.tc.hw4.ex2.pages.IndexPage;
+import com.epam.tc.hw6.StepsBase;
+import com.epam.tc.hw6.ex2.pages.DifferentElementsPage;
+import com.epam.tc.hw6.ex2.pages.IndexPage;
 import io.qameta.allure.Step;
 import java.util.function.Predicate;
-import org.assertj.core.api.Fail;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -81,7 +80,8 @@ public class Steps extends StepsBase {
             .isNotEmpty();
     }
 
-    public void fail() {
-        Fail.fail("Expected failure");
+    @Override
+    public void flush() {
+        this.driver.quit();
     }
 }

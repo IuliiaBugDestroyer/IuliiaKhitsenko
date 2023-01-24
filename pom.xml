@@ -11,6 +11,7 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <testng>7.6.1</testng>
         <selenium-java>4.1.1</selenium-java>
         <webdrivermanager>5.3.1</webdrivermanager>
@@ -107,6 +108,12 @@
                 <suite.xml.file>cucumber.xml</suite.xml.file>
             </properties>
         </profile>
+        <profile>
+            <id>SeleniumGridTests</id>
+            <properties>
+                <suite.xml.file>grid.xml</suite.xml.file>
+            </properties>
+        </profile>
     </profiles>
 
     <dependencies>
@@ -140,11 +147,6 @@
             <artifactId>cucumber-java</artifactId>
             <version>${cucumber-java}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>info.cukes</groupId>-->
-<!--            <artifactId>cucumber-java8</artifactId>-->
-<!--            <version>${cucumber-java8}</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-core</artifactId>
@@ -185,7 +187,6 @@
             <artifactId>jdi-light-html</artifactId>
             <version>1.4.4</version>
         </dependency>
-
                 <dependency>
                     <groupId>com.epam.calculator</groupId>
                     <artifactId>calc</artifactId>
