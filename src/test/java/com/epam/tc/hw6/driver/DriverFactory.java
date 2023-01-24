@@ -4,7 +4,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.config.WebDriverManagerException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.Duration;
 import java.util.Locale;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
@@ -17,7 +16,7 @@ import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 @UtilityClass
-public class DriverFabric {
+public class DriverFactory {
 
     public static WebDriver getWebDriver(final boolean isLocal, final String hub, @NonNull final String browser) {
         WebDriver driver;

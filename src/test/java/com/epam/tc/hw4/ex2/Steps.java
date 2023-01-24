@@ -43,11 +43,12 @@ public class Steps extends StepsBase {
     @Step("Open Different elements page")
     public void selectCheckboxes() {
         indexPage.redirectToDifferentElementsPage();
-        Predicate<WebElement> predicate = (s) -> s.getText().equalsIgnoreCase("Water") | s.getText().equalsIgnoreCase("Wind");
+        Predicate<WebElement> predicate =
+            (s) -> s.getText().equalsIgnoreCase("Water") | s.getText().equalsIgnoreCase("Wind");
         differentElementsPage.getCheckboxes().stream()
-                .filter(predicate)
-                .map(x -> x.findElement(By.tagName("input")))
-                .forEach(x -> x.click());
+                             .filter(predicate)
+                             .map(x -> x.findElement(By.tagName("input")))
+                             .forEach(x -> x.click());
     }
 
     public void verifyChbxLogs() {
@@ -65,7 +66,7 @@ public class Steps extends StepsBase {
     }
 
     public void verifyRadioButtonLogs() {
-            assertThat(filterElementsByText(differentElementsPage.getLogs(), "metal: value changed to Selen")).isNotEmpty();
+        assertThat(filterElementsByText(differentElementsPage.getLogs(), "metal: value changed to Selen")).isNotEmpty();
     }
 
     public void selectColor() {

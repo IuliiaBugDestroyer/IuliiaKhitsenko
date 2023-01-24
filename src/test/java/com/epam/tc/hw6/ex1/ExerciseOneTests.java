@@ -1,6 +1,6 @@
 package com.epam.tc.hw6.ex1;
 
-import com.epam.tc.hw6.driver.DriverFabric;
+import com.epam.tc.hw6.driver.DriverFactory;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.testng.annotations.AfterMethod;
@@ -20,7 +20,7 @@ public class ExerciseOneTests {
     public void setUp(@Optional("false") final boolean isLocal,
                       final String hub,
                       final String browser) {
-        var driver = DriverFabric.getWebDriver(isLocal, hub, browser);
+        var driver = DriverFactory.getWebDriver(isLocal, hub, browser);
         this.steps = new Steps(driver);
     }
 
