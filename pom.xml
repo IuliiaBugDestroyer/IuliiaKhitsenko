@@ -114,6 +114,12 @@
                 <suite.xml.file>grid.xml</suite.xml.file>
             </properties>
         </profile>
+        <profile>
+            <id>JDI</id>
+            <properties>
+                <suite.xml.file>Jdi.xml</suite.xml.file>
+            </properties>
+        </profile>
     </profiles>
 
     <dependencies>
@@ -187,7 +193,7 @@
             <artifactId>jdi-light-html</artifactId>
             <version>1.4.4</version>
         </dependency>
-                <dependency>
+        <dependency>
                     <groupId>com.epam.calculator</groupId>
                     <artifactId>calc</artifactId>
                     <version>1.0</version>
