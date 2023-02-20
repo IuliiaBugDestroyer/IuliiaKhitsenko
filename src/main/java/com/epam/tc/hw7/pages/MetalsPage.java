@@ -1,26 +1,32 @@
 package com.epam.tc.hw7.pages;
 
-import com.epam.jdi.light.elements.common.Label;
-import com.epam.jdi.light.elements.common.UIElement;
+import com.epam.jdi.light.elements.complex.Checklist;
 import com.epam.jdi.light.elements.complex.WebList;
+import com.epam.jdi.light.elements.complex.dropdown.Dropdown;
+import com.epam.jdi.light.elements.complex.dropdown.DropdownExpand;
+import com.epam.jdi.light.elements.complex.dropdown.DropdownSelect;
 import com.epam.jdi.light.elements.composite.WebPage;
+import com.epam.jdi.light.elements.pageobjects.annotations.locators.JDropdown;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.UI;
 import com.epam.jdi.light.ui.html.elements.common.Button;
 import com.epam.jdi.light.ui.html.elements.common.Text;
+import com.epam.jdi.light.ui.html.elements.complex.MultiSelector;
 import com.epam.jdi.light.ui.html.elements.complex.RadioButtons;
-import java.util.List;
 
 public class MetalsPage extends WebPage {
-    @UI("#colors .dropdown-menu li span") public static WebList colorsDrop;
-    @UI("#metals .dropdown-menu li span") public static WebList metalsDrop;
     @UI("#vegetables .dropdown-menu label") public static WebList vegetablesDrop;
-    @UI("#colors button") public static Button colorButton;
-    @UI("#metals button .caret") public static Button metalButton;
     @UI("#vegetables button") public static Button vegetablesButton;
+
     @UI("#submit-button") public static Button submitButton;
 
-    @UI(".checkbox > label") public static List<Label> checkboxesLabels;
-    @UI(".radio > label") public static RadioButtons radioButton;
+    @UI(".checkbox > input[type='checkbox']") public static Checklist elementsCheckboxes;
+    @UI(".radio > input[type='radio']") public static RadioButtons summaryRadioButtons;
+
+    @JDropdown(root = "#colors", value = ".filter-option", list = "li", expand = ".caret")
+    public static Dropdown colors;
+
+    @JDropdown(root = "#metals", value = ".filter-option", list = "li", expand = ".caret")
+    public static Dropdown metals;
 
     @UI(".results .summ-res") public static Text summaryResult;
     @UI(".results .col-res") public static Text colorResult;
