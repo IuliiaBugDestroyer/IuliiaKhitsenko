@@ -29,7 +29,5 @@ public class HomePage extends WebPage {
             password.sendKeys("Jdi1234");
             loginButton.click();
         }
-
-        userName.assertThat().displayed();
     }
 }

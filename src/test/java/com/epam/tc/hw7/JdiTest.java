@@ -4,21 +4,14 @@ import static com.epam.jdi.light.elements.init.PageFactory.initElements;
 import static com.epam.tc.hw7.pages.JdiSite.homePage;
 import static com.epam.tc.hw7.pages.JdiSite.metalsPage;
 import static com.epam.tc.hw7.pages.MetalsPage.colorResult;
-import static com.epam.tc.hw7.pages.MetalsPage.colors;
-import static com.epam.tc.hw7.pages.MetalsPage.elementsCheckboxes;
 import static com.epam.tc.hw7.pages.MetalsPage.elementsResult;
-import static com.epam.tc.hw7.pages.MetalsPage.metals;
 import static com.epam.tc.hw7.pages.MetalsPage.metalsResult;
-import static com.epam.tc.hw7.pages.MetalsPage.submitButton;
-import static com.epam.tc.hw7.pages.MetalsPage.summaryRadioButtons;
 import static com.epam.tc.hw7.pages.MetalsPage.summaryResult;
-import static com.epam.tc.hw7.pages.MetalsPage.vegetablesButton;
-import static com.epam.tc.hw7.pages.MetalsPage.vegetablesDrop;
 import static com.epam.tc.hw7.pages.MetalsPage.vegetablesResult;
 
 import com.epam.jdi.light.driver.WebDriverUtils;
 import com.epam.tc.hw7.pages.JdiSite;
-import java.util.stream.Collectors;
+import java.util.Collection;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -47,26 +40,19 @@ public class JdiTest {
 
         metalsPage.open();
 
-        data.summary.forEach(x -> summaryRadioButtons.select(x.toString()));
+        metalsPage.form.fill(data.summary, data.elements, data.color, data.metals, data.vegetables);
 
-        data.elements.forEach(x -> elementsCheckboxes.select(x));
 
-        colors.select(data.color);
+        metalsPage.form.submit();
 
-        metals.select(data.metals);
+        verifyResultLog(data.summary, data.elements, data.color, data.metals, data.vegetables);
+    }
 
-        vegetablesButton.click();
-        vegetablesDrop.stream().filter(x -> x.getText().equalsIgnoreCase("Vegetables"))
-                      .findFirst().get().click();
-        vegetablesDrop.stream().filter(x -> data.vegetables.contains(x.getText())).collect(Collectors.toList())
-                      .forEach(y -> y.click());
-
-        submitButton.click();
-
-        summaryResult.assertThat().text("Summary: " + data.summary.stream().reduce(0, Integer::sum));
-        colorResult.assertThat().text("Color: " + data.color);
-        metalsResult.assertThat().text("Metal: " + data.metals);
-        vegetablesResult.assertThat().text("Vegetables: " + String.join(", ", data.vegetables));
-        elementsResult.assertThat().text("Elements: " + String.join(", ", data.elements));
+    private void verifyResultLog(Collection<Integer> summaries, Collection<String> elements, String color, String metals, Collection<String> vegetables) {
+        summaryResult.assertThat().text("Summary: " + summaries.stream().reduce(0, Integer::sum));
+        colorResult.assertThat().text("Color: " + color);
+        metalsResult.assertThat().text("Metal: " + metals);
+        vegetablesResult.assertThat().text("Vegetables: " + String.join(", ", vegetables));
+        elementsResult.assertThat().text("Elements: " + String.join(", ", elements));
     }
 }
